@@ -1,0 +1,16 @@
+FROM python:3.10.10-slim-bullseye
+
+# install packages
+RUN apt update &&  \
+    apt -y install make &&  \
+    apt -y install dnsutils &&  \
+    apt -y install net-tools && \
+    apt -y install curl && \
+    apt -y install git && \
+    apt -y install vim && \
+    apt -y install wget && \
+    apt -y install unzip && \
+    apt -y install ssh
+COPY ./requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+RUN playwright install chromium --with-deps --force
