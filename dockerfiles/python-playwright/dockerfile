@@ -1,7 +1,9 @@
 FROM python:3.10.10-slim-bullseye
 
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
+
 # install packages
-RUN apt update &&  \
+RUN apt update --fix-missing &&  \
     apt -y install make &&  \
     apt -y install dnsutils &&  \
     apt -y install net-tools && \
